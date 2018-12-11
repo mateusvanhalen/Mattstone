@@ -6,6 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20181211201647_Mattgration.cs" />
+    <Compile Remove="Migrations\20181211201647_Mattgration.Designer.cs" />
+    <Compile Remove="Migrations\20181211202635_Mattgration.cs" />
+    <Compile Remove="Migrations\20181211202635_Mattgration.Designer.cs" />
+    <Compile Remove="Migrations\20181211203008_mattgration.cs" />
+    <Compile Remove="Migrations\20181211203008_mattgration.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />

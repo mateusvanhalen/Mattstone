@@ -13,5 +13,6 @@ namespace Mattstone.Models
         public int FamilyId { get; set; }
         [Required]
         public string FamilyName { get; set; }
+        public virtual ICollection<ApplicationUser> User { get; set; }
     }
 }

@@ -23,12 +23,12 @@ namespace Mattstone.Models
         [Display(Name = "Family Role")]
         public string FamilyRole { get; set; }
 
-        [Required]
         [Display(Name = "Family")]
         public Family Family { get; set; }
 
-        [Required]
-        public int FamilyId { get; set; }
-        
+        public int? FamilyId { get; set; }
+
+        public virtual ICollection<Chore> Chore { get; set; }
+
     }
 }
