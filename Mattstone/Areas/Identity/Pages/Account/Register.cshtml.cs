@@ -57,6 +57,9 @@ namespace Mattstone.Areas.Identity.Pages.Account
             [Display(Name = "Family Role")]
             public string FamilyRole { get; set; }
 
+            [Display(Name = "User Handle optional")]
+            public string UserHandle { get; set; }
+
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
@@ -79,8 +82,8 @@ namespace Mattstone.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email,
-                    FirstName = Input.FirstName, LastName = Input.LastName, FamilyRole = Input.FamilyRole };
+                var user = new ApplicationUser { UserHandle = Input.UserHandle, Email = Input.Email, UserName = Input.Email,
+                    FirstName = Input.FirstName, LastName = Input.LastName, FamilyRole = Input.FamilyRole, };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

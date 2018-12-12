@@ -26,6 +26,9 @@ namespace Mattstone.Models
         [Display(Name = "Family")]
         public Family Family { get; set; }
 
+        [Display(Name = "User Name optional")]
+        public string UserHandle { get; set; }
+
         public int? FamilyId { get; set; }
 
         public virtual ICollection<Chore> Chore { get; set; }
