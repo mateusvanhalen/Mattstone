@@ -28,11 +28,6 @@
                 <span asp-validation-for="Input.FamilyRole" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Input.UserHandle"></label>
                 <input asp-for="Input.UserHandle" class="form-control" />
                 <span asp-validation-for="Input.UserHandle" class="text-danger"></span>
@@ -47,10 +42,25 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.IsParent"></label>
+                <input asp-for="Input.IsParent" class="form-control" />
+                <span asp-validation-for="Input.IsParent" class="text-danger"></span>
+            </div>
+    @*<div class="form-group">
+            <label asp-for="FamilyId" class="control-label">Payment Types</label>
+            <select asp-for="FamilyId" class="form-control" asp-items="@Model.PaymentTypes"></select>
+            <span asp-validation-for="FamilyId" class="text-danger"></span>
+        </div>*@
 
-            <button type="submit" class="btn btn-default">Register</button>
-        </form>
-    </div>
+    <button type="submit" class="btn btn-default">Register</button>
+    </form>
+</div>
 </div>
 
 @section Scripts {

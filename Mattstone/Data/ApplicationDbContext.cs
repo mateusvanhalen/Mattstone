@@ -33,6 +33,8 @@ namespace Mattstone.Data
                 FirstName = "admin",
                 LastName = "admin",
                 UserName = "admin@admin.com",
+                UserHandle = "adminGuy",
+                IsParent = true,
                 FamilyRole = "papa",
                 NormalizedUserName = "ADMIN@ADMIN.COM",
                 Email = "admin@admin.com",

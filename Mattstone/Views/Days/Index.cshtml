@@ -5,10 +5,7 @@
 }
 
 <h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+    
 <table class="table">
     <thead>
         <tr>
@@ -25,9 +22,7 @@
                 @Html.DisplayFor(modelItem => item.DayName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.DayId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DayId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DayId">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.DayId">Details</a> 
             </td>
         </tr>
 }
