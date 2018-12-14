@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Mattstone.Data;
 using Mattstone.Models;
+using Mattstone.Models.ViewModels;
 
 namespace Mattstone.Controllers
 {
@@ -44,9 +45,24 @@ namespace Mattstone.Controllers
         }
 
         // GET: Chores/Create
-        public IActionResult Create()
-        {
-            return View();
+        public async Task<IActionResult> Create()
+        { 
+            var dayNames await _context.DayName.ToListAsync();
+
+        var DayNameListOptions = new List<SelectListItem>();
+
+            foreach (DayName dn in dayNames)
+            {
+                dayNameListOptions.Add(new SelectListItem
+                {
+                    Value = dn.DayId.ToString(),
+                    Text = dn.Label
+    });
+            }
+
+        
+            ChoresCreateViewModel model = new ChoresCreateViewModel(_context);
+            return View(model);
         }
 
         // POST: Chores/Create
@@ -54,15 +70,17 @@ namespace Mattstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ChoreId,ChoreName,Description,Done")] Chore chore)
+        public async Task<IActionResult> Create(ChoresCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(chore);
+                _context.Add(model.Chore);
+
+               
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(chore);
+            return View(model);
         }
 
         // GET: Chores/Edit/5

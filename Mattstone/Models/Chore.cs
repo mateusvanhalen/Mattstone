@@ -17,9 +17,9 @@ namespace Mattstone.Models
         public string Description { get; set; }
         
         public ApplicationUser User { get; set; }
-        [Required]
+        
         public bool Done { get; set; }
-        [Required]
+        
         public Day Day { get; set; }
     }
 }
