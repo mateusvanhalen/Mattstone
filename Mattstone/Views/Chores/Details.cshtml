@@ -23,11 +23,18 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.Day.DayName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Day.DayName)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Done)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Done)
         </dd>
+
     </dl>
 </div>
 <div>

@@ -19,11 +19,11 @@ namespace Mattstone.Controllers
         {
             _context = context;
         }
-
-        // GET: Chores
+        //GET; Students
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Chore.ToListAsync());
+            var applicationDbContext = _context.Chore.Include(c => c.Day);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Chores/Details/5
@@ -62,7 +62,7 @@ namespace Mattstone.Controllers
             {
                 _context.Add(model.Chore);
 
-                
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -82,6 +82,7 @@ namespace Mattstone.Controllers
             {
                 return NotFound();
             }
+            ViewData["DayId"] = new SelectList(_context.Day, "DayId", "DayName", chore.DayId);
             return View(chore);
         }
 
@@ -90,35 +91,25 @@ namespace Mattstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ChoreId,ChoreName,Description,Done")] Chore chore)
+        public async Task<IActionResult> Edit(int id, [Bind("ChoreName,Description,DayId,Done")] Chore chore)
         {
-            if (id != chore.ChoreId)
-            {
-                return NotFound();
-            }
+                if (id != chore.ChoreId)
+                {
+                    return NotFound();
+                }
 
-            if (ModelState.IsValid)
-            {
-                try
+                if (ModelState.IsValid)
                 {
                     _context.Update(chore);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ChoreExists(chore.ChoreId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
                 return RedirectToAction(nameof(Index));
-            }
+            
+            ViewData["DayId"] = new SelectList(_context.Day, "DayId", "DayName", chore.DayId);
             return View(chore);
         }
+         
+
 
         // GET: Chores/Delete/5
         public async Task<IActionResult> Delete(int? id)
