@@ -46,23 +46,9 @@ namespace Mattstone.Controllers
 
         // GET: Chores/Create
         public async Task<IActionResult> Create()
-        { 
-            var dayNames await _context.DayName.ToListAsync();
-
-        var DayNameListOptions = new List<SelectListItem>();
-
-            foreach (DayName dn in dayNames)
-            {
-                dayNameListOptions.Add(new SelectListItem
-                {
-                    Value = dn.DayId.ToString(),
-                    Text = dn.Label
-    });
-            }
-
-        
-            ChoresCreateViewModel model = new ChoresCreateViewModel(_context);
-            return View(model);
+        {
+            ChoresCreateViewModel viewmodel = new ChoresCreateViewModel(_context);
+            return View(viewmodel);
         }
 
         // POST: Chores/Create
@@ -76,13 +62,13 @@ namespace Mattstone.Controllers
             {
                 _context.Add(model.Chore);
 
-               
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["DayId"] = new SelectList(_context.Day, "DayId", "DayName", model.Chore.Day);
             return View(model);
         }
-
         // GET: Chores/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

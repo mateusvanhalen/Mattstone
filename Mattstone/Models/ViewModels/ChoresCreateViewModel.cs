@@ -9,14 +9,18 @@ namespace Mattstone.Models.ViewModels
 {
     public class ChoresCreateViewModel
     {
-        private ApplicationDbContext _context;
+        public Chore Chore { get; set; }
+        public List<SelectListItem> Day { get; set; }
 
+        public ChoresCreateViewModel()
+        {}
         public ChoresCreateViewModel(ApplicationDbContext context)
         {
-            _context = context;
+            Day = context.Day.Select(li => new SelectListItem()
+            {
+                Text = li.DayName,
+                Value = li.DayId.ToString()
+            }).ToList();
         }
-
-        public Chore Chore { get; set; }
-        public ICollection<SelectListItem> Day { get; set; }
     }
 }
