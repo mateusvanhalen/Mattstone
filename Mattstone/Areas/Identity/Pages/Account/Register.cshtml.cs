@@ -57,6 +57,10 @@ namespace Mattstone.Areas.Identity.Pages.Account
             [Display(Name = "Family Role")]
             public string FamilyRole { get; set; }
 
+            [Required]
+            [Display(Name = "Family Id # - Do not continue if you do not have one")]
+            public int FamilyId { get; set; }
+
             [Display(Name = "User Handle optional")]
             public string UserHandle { get; set; }
 
@@ -86,7 +90,7 @@ namespace Mattstone.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserHandle = Input.UserHandle, Email = Input.Email, UserName = Input.Email,
-                    FirstName = Input.FirstName, LastName = Input.LastName, FamilyRole = Input.FamilyRole, };
+                    FirstName = Input.FirstName, LastName = Input.LastName, FamilyRole = Input.FamilyRole, IsParent = Input.IsParent, FamilyId = Input.FamilyId };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

@@ -23,10 +23,11 @@ namespace Mattstone.Models
         [Display(Name = "Family Role")]
         public string FamilyRole { get; set; }
 
-        [Display(Name = "Family")]
+        //make for 1st time parent only//
+        [Display(Name = "Family Name - only fill out if you are setting up for your family")]
         public Family Family { get; set; }
 
-        [Display(Name = "User Name optional")]
+        [Display(Name = "User Handle or Nickname")]
         public string UserHandle { get; set; }
 
         [Display(Name = "Are you a parent?")]

@@ -13,6 +13,11 @@
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="Input.FamilyId" class="control-label"></label>
+                <input asp-for="Input.FamilyId" class="form-control"> </input>
+                <span asp-validation-for="Input.FamilyId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Input.FirstName"></label>
                 <input asp-for="Input.FirstName" class="form-control" />
                 <span asp-validation-for="Input.FirstName" class="text-danger"></span>
@@ -53,16 +58,12 @@
                 <input asp-for="Input.IsParent" class="checkbox" />
                 <span asp-validation-for="Input.IsParent" class="checkbox"></span>
             </div>
-                    @*<div class="form-group">
-                <label asp-for="FamilyId" class="control-label">Payment Types</label>
-                <select asp-for="FamilyId" class="form-control" asp-items="@Model.PaymentTypes"></select>
-                <span asp-validation-for="FamilyId" class="text-danger"></span>
-            </div>*@
-                
-            <br/>
-            <br/>
-                    <button type="submit" class="btn btn-default">Register</button>
-</form>
+
+
+            <br />
+            <br />
+            <button type="submit" class="btn btn-default">Register</button>
+        </form>
 </div>
 </div>
 
