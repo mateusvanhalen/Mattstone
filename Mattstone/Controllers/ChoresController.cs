@@ -19,7 +19,7 @@ namespace Mattstone.Controllers
         {
             _context = context;
         }
-        //GET; Students
+        //GET: Chores
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Chore.Include(c => c.Day);
@@ -62,7 +62,6 @@ namespace Mattstone.Controllers
             {
                 _context.Add(model.Chore);
 
-
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -71,19 +70,25 @@ namespace Mattstone.Controllers
         }
         // GET: Chores/Edit/5
         public async Task<IActionResult> Edit(int? id)
-        {
+        { 
+            //setting condition if there is no ID or no ID match to databse, return Not found from the null response
             if (id == null)
             {
                 return NotFound();
             }
-
+            //the response from the async (await) for the context(what is grabbing properties) for chore ad finidng the id that is binded
             var chore = await _context.Chore.FindAsync(id);
+            // if the property of chore returns null throw a NotFound message 
             if (chore == null)
             {
                 return NotFound();
             }
-            ViewData["DayId"] = new SelectList(_context.Day, "DayId", "DayName", chore.DayId);
-            return View(chore);
+            // using the viewmodel variable from ChoresEditViewModel, create a new instance from the context method
+            ChoresEditViewModel viewmodel = new ChoresEditViewModel(_context);
+            //using the viewmodel variable's property chore(as an object), define it as chore. This will let us use the information from the created chore to display 
+            viewmodel.Chore = chore;
+            //return the viewmodel variable with new information 
+            return View(viewmodel); ;
         }
 
         // POST: Chores/Edit/5
@@ -91,28 +96,22 @@ namespace Mattstone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ChoreName,Description,DayId,Done")] Chore chore)
+        public async Task<IActionResult> Edit(int id, ChoresEditViewModel model)
         {
-                if (id != chore.ChoreId)
-                {
-                    return NotFound();
-                }
+            if (ModelState.IsValid)
+            {
+                _context.Update(model.Chore);
 
-                if (ModelState.IsValid)
-                {
-                    _context.Update(chore);
-                    await _context.SaveChangesAsync();
-                }
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            
-            ViewData["DayId"] = new SelectList(_context.Day, "DayId", "DayName", chore.DayId);
-            return View(chore);
+            }
+            ViewData["DayId"] = new SelectList(_context.Day, "DayId", "DayName", new { id = model.Chore.ChoreId});
+            return View(model);
+
         }
-         
 
-
-        // GET: Chores/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+            // GET: Chores/Delete/5
+            public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {

@@ -16,11 +16,13 @@ namespace Mattstone.Models.ViewModels
         {}
         public ChoresEditViewModel(ApplicationDbContext context)
         {
+            //this makes each day into a SelectListItem object
             Day = context.Day.Select(li => new SelectListItem()
             {
                 Text = li.DayName,
                 Value = li.DayId.ToString()
             }).ToList();
+
         }
     }
 }

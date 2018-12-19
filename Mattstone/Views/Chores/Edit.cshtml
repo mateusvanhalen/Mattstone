@@ -24,8 +24,8 @@
                 <span asp-validation-for="Chore.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Chore.Day" class="control-label"></label>
-                <select asp-for="Chore.Day" class="form-control" asp-items="Model.Day"></select>
+                <label asp-for="Chore.DayId" class="control-label"></label>
+                <select asp-for="Chore.DayId" class="form-control" asp-items="@Model.Day"></select>
                 <span asp-validation-for="Chore.DayId" class="text-danger"></span>
             </div>
             <div class="form-group">
