@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Mattstone.Data;
 using Mattstone.Models;
+using Mattstone.Models.ViewModels;
 
 namespace Mattstone.Controllers
 {
@@ -33,16 +34,26 @@ namespace Mattstone.Controllers
                 return NotFound();
             }
 
+            // get single family with list of users
             var family = await _context.Family
-                .FirstOrDefaultAsync(m => m.FamilyId == id);
+                .Include(u => u.User)
+              .FirstOrDefaultAsync(m => m.FamilyId == id);
+
             if (family == null)
             {
                 return NotFound();
             }
 
-            return View(family);
-        }
 
+
+            FamilyDetialViewModel viewmodel = new FamilyDetialViewModel()
+            {
+                Family = family,
+                Users = family.User.ToList()
+            };
+
+            return View(viewmodel);
+        }
         // GET: Families/Create
         public IActionResult Create()
         {
