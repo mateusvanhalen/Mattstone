@@ -44,8 +44,6 @@ namespace Mattstone.Controllers
                 return NotFound();
             }
 
-
-
             FamilyDetialViewModel viewmodel = new FamilyDetialViewModel()
             {
                 Family = family,

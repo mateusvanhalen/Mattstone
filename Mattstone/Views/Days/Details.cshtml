@@ -1,4 +1,4 @@
-﻿@model Mattstone.Models.Day
+﻿@model Mattstone.Models.ViewModels.DayDetailViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -11,10 +11,16 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.DayName)
+            @Html.DisplayNameFor(model => model.Day.DayName)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.DayName)
+            @Html.DisplayFor(model => model.Day.DayName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Chore.ChoreName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Chore.ChoreName)
         </dd>
     </dl>
 </div>

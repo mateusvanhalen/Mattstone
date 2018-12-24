@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Mattstone.Data;
 using Mattstone.Models;
+using Mattstone.Models.ViewModels;
 
 namespace Mattstone.Controllers
 {
@@ -33,14 +34,23 @@ namespace Mattstone.Controllers
                 return NotFound();
             }
 
+            //to get day with list of users and chores
+
             var day = await _context.Day
-                .FirstOrDefaultAsync(m => m.DayId == id);
+                .Include(c => c.Chore)
+                .FirstOrDefaultAsync(d => d.DayId == id);
+
             if (day == null)
             {
                 return NotFound();
             }
+            DayDetailViewModel viewmodel = new DayDetailViewModel()
+            {
+                Day = day,
+                Chore = day.Chore
+            };
 
-            return View(day);
+            return View(viewmodel);
         }
 
         // GET: Days/Create
@@ -65,7 +75,8 @@ namespace Mattstone.Controllers
             return View(day);
         }
 
-        // GET: Days/Edit/5
+
+        //    // GET: Days/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,9 +92,9 @@ namespace Mattstone.Controllers
             return View(day);
         }
 
-        // POST: Days/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //    // POST: Days/Edit/5
+        //    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //    // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("DayId,DayName")] Day day)
@@ -116,7 +127,7 @@ namespace Mattstone.Controllers
             return View(day);
         }
 
-        // GET: Days/Delete/5
+        //    // GET: Days/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +145,7 @@ namespace Mattstone.Controllers
             return View(day);
         }
 
-        // POST: Days/Delete/5
+        //    // POST: Days/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -151,3 +162,4 @@ namespace Mattstone.Controllers
         }
     }
 }
+
