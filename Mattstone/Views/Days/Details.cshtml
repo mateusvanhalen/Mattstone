@@ -16,12 +16,10 @@
         <dd>
             @Html.DisplayFor(model => model.Day.DayName)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Chore.ChoreName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Chore.ChoreName)
-        </dd>
+ @foreach (var item in Model.Chores) {
+            <div class="dl-horizontal">@item.ChoreName
+                </div>
+        }
     </dl>
 </div>
 <div>

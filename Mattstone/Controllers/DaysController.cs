@@ -37,7 +37,7 @@ namespace Mattstone.Controllers
             //to get day with list of users and chores
 
             var day = await _context.Day
-                .Include(c => c.Chore)
+                .Include(c => c.Chores)
                 .FirstOrDefaultAsync(d => d.DayId == id);
 
             if (day == null)
@@ -47,7 +47,7 @@ namespace Mattstone.Controllers
             DayDetailViewModel viewmodel = new DayDetailViewModel()
             {
                 Day = day,
-                Chore = day.Chore
+                Chores = day.Chores
             };
 
             return View(viewmodel);

@@ -13,7 +13,7 @@ namespace Mattstone.Models
         public int DayId { get; set; }
         [Required]
         public string DayName { get; set; }
-        public virtual Chore Chore { get; set; }
+        public virtual List<Chore> Chores { get; set; }
         public virtual ICollection<ApplicationUser> User { get; set; }
     }
 }
