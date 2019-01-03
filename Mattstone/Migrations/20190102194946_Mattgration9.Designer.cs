@@ -4,14 +4,16 @@ using Mattstone.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Mattstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190102194946_Mattgration9")]
+    partial class Mattgration9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,13 +37,13 @@ namespace Mattstone.Migrations
 
                     b.Property<bool>("Done");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("UsersId");
 
                     b.HasKey("ChoreId");
 
                     b.HasIndex("DayId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UsersId");
 
                     b.ToTable("Chore");
                 });
@@ -281,9 +283,9 @@ namespace Mattstone.Migrations
                         .HasForeignKey("DayId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Mattstone.Models.ApplicationUser", "User")
+                    b.HasOne("Mattstone.Models.ApplicationUser", "Users")
                         .WithMany("Chore")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UsersId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -338,7 +340,7 @@ namespace Mattstone.Migrations
                         .HasForeignKey("DayId");
 
                     b.HasOne("Mattstone.Models.Family", "Family")
-                        .WithMany("Users")
+                        .WithMany("User")
                         .HasForeignKey("FamilyId");
                 });
 #pragma warning restore 612, 618

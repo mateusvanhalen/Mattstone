@@ -36,6 +36,6 @@ namespace Mattstone.Models
         public int? FamilyId { get; set; }
 
         public virtual ICollection<Chore> Chore { get; set; }
-
+      
     }
 }

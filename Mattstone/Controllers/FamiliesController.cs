@@ -36,7 +36,7 @@ namespace Mattstone.Controllers
 
             // get single family with list of users
             var family = await _context.Family
-                .Include(u => u.User)
+                .Include(u => u.Users)
               .FirstOrDefaultAsync(m => m.FamilyId == id);
 
             if (family == null)
@@ -47,7 +47,7 @@ namespace Mattstone.Controllers
             FamilyDetialViewModel viewmodel = new FamilyDetialViewModel()
             {
                 Family = family,
-                Users = family.User.ToList()
+                Users = family.Users.ToList()
             };
 
             return View(viewmodel);

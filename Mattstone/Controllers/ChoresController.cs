@@ -61,12 +61,15 @@ namespace Mattstone.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(model.Chore);
-
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["DayId"] = new SelectList(_context.Day, "DayId", "DayName", model.Chore.Day);
+            ViewData["UserId"] = new SelectList(_context.ApplicationUser, "UserId", "UserName", model.Chore.User);
             return View(model);
+           
+            //refer view model User Text and Valus//
+           
         }
         // GET: Chores/Edit/5
         public async Task<IActionResult> Edit(int? id)

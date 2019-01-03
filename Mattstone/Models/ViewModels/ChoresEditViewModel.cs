@@ -11,10 +11,10 @@ namespace Mattstone.Models.ViewModels
     {
         public Chore Chore { get; set; }
         public List<SelectListItem> Day { get; set; }
-        public List<ApplicationUser> User { get; set; }
+        public List<SelectListItem> Users { get; set; }
 
         public ChoresEditViewModel()
-        { }
+        {}
         public ChoresEditViewModel(ApplicationDbContext context)
         {
             //this makes each day into a SelectListItem object
@@ -23,7 +23,12 @@ namespace Mattstone.Models.ViewModels
                 Text = li.DayName,
                 Value = li.DayId.ToString()
             }).ToList();
+
+            Users = context.ApplicationUser.Select(li => new SelectListItem()
+            {
+                Text = li.UserHandle,
+                Value = li.Id.ToString()
+            }).ToList();
         }
-    
     }
 }
