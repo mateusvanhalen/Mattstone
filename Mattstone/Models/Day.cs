@@ -15,5 +15,6 @@ namespace Mattstone.Models
         public string DayName { get; set; }
         public virtual List<Chore> Chores { get; set; }
         public virtual ICollection<ApplicationUser> User { get; set; }
+        public string UserHandle { get; set; }
     }
 }

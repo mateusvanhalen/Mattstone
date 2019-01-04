@@ -25,5 +25,7 @@ namespace Mattstone.Models
         public int DayId { get; set; }
         
         public virtual Day Day { get; set; }
+
+        public string UserHandle { get; set; }
     }
 }

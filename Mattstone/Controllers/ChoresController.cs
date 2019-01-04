@@ -22,8 +22,27 @@ namespace Mattstone.Controllers
         //GET: Chores
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Chore.Include(c => c.Day);
-            return View(await applicationDbContext.ToListAsync());
+            var choreList = _context.Chore
+                .Include(c => c.Day)
+                .Include(u => u.User).ToList();
+
+            if (choreList == null)
+            {
+                return NotFound();
+            }
+            ChoreIndexViewModel viewmodel = new ChoreIndexViewModel()
+            {
+                Chores = choreList,
+                //Day = choreList.Day,
+                //Users = choreList.User
+            };
+
+            return View(viewmodel);
+
+            //viewmodel.ChoreList = Chore
+
+            
+            //return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Chores/Details/5

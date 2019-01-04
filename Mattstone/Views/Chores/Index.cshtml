@@ -1,31 +1,33 @@
-﻿@model IEnumerable<Mattstone.Models.Chore>
+﻿@model Mattstone.Models.ViewModels.ChoreIndexViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
-
 <h2>Chores!</h2>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ChoreName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Done)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Day.DayName)
-            </th>
+            <dd>
+                Name
+            </dd>
+            <dd>
+                Done
+            </dd>
+            <dd>
+                Day
+            </dd>
+            <dd>
+                Who's Chore?
+            </dd>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model.Chores)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ChoreName)
@@ -37,11 +39,15 @@
                 @Html.DisplayFor(modelItem => item.Day.DayName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ChoreId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ChoreId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ChoreId">Delete</a>
+                @Html.DisplayFor(modelItem => item.User.UserHandle)
             </td>
+            <td></td>
         </tr>
-}
+        }
+
+
+        @*<a asp-action="Edit" asp-route-id="@Model.Chores.ChoreId">Edit</a> |
+        <a asp-action="Delete" asp-route-id="@Model.Chore.ChoreId">Delete</a> |
+        <a asp-action="Details" asp-route-id="@Model.Chore.ChoreId">Details</a>*@
     </tbody>
 </table>
