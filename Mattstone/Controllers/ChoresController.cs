@@ -8,24 +8,35 @@ using Microsoft.EntityFrameworkCore;
 using Mattstone.Data;
 using Mattstone.Models;
 using Mattstone.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace Mattstone.Controllers
 {
     public class ChoresController : Controller
     {
         private readonly ApplicationDbContext _context;
+        //Id Framework
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ChoresController(ApplicationDbContext context)
+        public ChoresController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            //using Id Framework
+            _userManager = userManager;
         }
+        //Id Framework also
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         //GET: Chores
         public async Task<IActionResult> Index()
         {
+            var user = await GetCurrentUserAsync();
+
             var choreList = _context.Chore
                 .Include(c => c.Day)
-                .Include(u => u.User).ToList();
-
+                .Include(u => u.User)
+                // this otion here for showing only user chores
+                //.Where(c => c.UserId == user.Id)
+                .ToList();
             if (choreList == null)
             {
                 return NotFound();
@@ -33,8 +44,8 @@ namespace Mattstone.Controllers
             ChoreIndexViewModel viewmodel = new ChoreIndexViewModel()
             {
                 Chores = choreList,
-                //Day = choreList.Day,
-                //Users = choreList.User
+                IsParent = user.IsParent
+
             };
 
             return View(viewmodel);

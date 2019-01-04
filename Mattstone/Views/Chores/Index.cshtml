@@ -41,13 +41,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.User.UserHandle)
             </td>
-            <td></td>
-        </tr>
-        }
-
-
-        @*<a asp-action="Edit" asp-route-id="@Model.Chores.ChoreId">Edit</a> |
-        <a asp-action="Delete" asp-route-id="@Model.Chore.ChoreId">Delete</a> |
-        <a asp-action="Details" asp-route-id="@Model.Chore.ChoreId">Details</a>*@
+       <td>
+         @if (Model.IsParent == true)
+           {
+               
+        <a asp-action="Edit" asp-route-id="@item.ChoreId">Edit</a><span>|</span>
+        <a asp-action="Delete"asp-route-id="@item.ChoreId">Delete</a><span>|</span>
+            }
+        <a asp-action="Details" asp-route-id="@item.ChoreId">Details</a>
+           </td>
+</tr>}
     </tbody>
 </table>
