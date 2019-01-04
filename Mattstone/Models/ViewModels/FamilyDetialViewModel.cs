@@ -9,5 +9,6 @@ namespace Mattstone.Models.ViewModels
     {
         public Family Family { get; set; }
         public List<ApplicationUser> Users { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

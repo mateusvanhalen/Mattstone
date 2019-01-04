@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Family</h4>
+    <h4>Your Family</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -23,14 +23,20 @@
             @Html.DisplayFor(model => model.Family.FamilyId)
         </dd>
         <dt>
-            Family user names
+            Family Members
         </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Family.Users)
-        </dd>
+        @*For Loop to get User Handle for display*@
+        @foreach (var item in Model.Users)
+        {
+            <div class="dl-horizontal">
+                <dd>
+                    @item.UserHandle
+            </dd>
+            </div>
+        }
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Family.FamilyId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Family.FamilyId">Edit Family Name</a> |
     <a asp-action="Index">Back to List</a>
 </div>

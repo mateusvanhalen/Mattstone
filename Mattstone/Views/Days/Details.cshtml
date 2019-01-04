@@ -7,19 +7,28 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Day</h4>
+    <h4>@Html.DisplayFor(model => model.Day.DayName)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Day.DayName)
+            @Html.DisplayNameFor(model => model.Day.Chores)
         </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Day.DayName)
-        </dd>
- @foreach (var item in Model.Chores) {
-            <div class="dl-horizontal">@item.ChoreName
-                </div>
-        }
+
+        @foreach (var item in Model.Chores)
+        {
+            <div class="dl-horizontal">
+                <dd>
+                    @item.ChoreName
+                </dd>
+            </div>}
+        @foreach (var item in Model.Chores)
+        { 
+            <div class="dl-horizontal">
+                <dd>
+                    @item.UserId
+                </dd>
+             </div>
+                }
     </dl>
 </div>
 <div>
