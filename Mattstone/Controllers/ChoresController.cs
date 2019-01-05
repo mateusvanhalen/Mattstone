@@ -45,17 +45,11 @@ namespace Mattstone.Controllers
             {
                 Chores = choreList,
                 IsParent = user.IsParent
-
             };
-
             return View(viewmodel);
-
             //viewmodel.ChoreList = Chore
-
-            
             //return View(await applicationDbContext.ToListAsync());
         }
-
         // GET: Chores/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -63,24 +57,20 @@ namespace Mattstone.Controllers
             {
                 return NotFound();
             }
-
             var chore = await _context.Chore
                 .FirstOrDefaultAsync(m => m.ChoreId == id);
             if (chore == null)
             {
                 return NotFound();
             }
-
             return View(chore);
         }
-
         // GET: Chores/Create
         public async Task<IActionResult> Create()
         {
             ChoresCreateViewModel viewmodel = new ChoresCreateViewModel(_context);
             return View(viewmodel);
         }
-
         // POST: Chores/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -97,9 +87,7 @@ namespace Mattstone.Controllers
             ViewData["DayId"] = new SelectList(_context.Day, "DayId", "DayName", model.Chore.Day);
             ViewData["UserId"] = new SelectList(_context.ApplicationUser, "UserId", "UserName", model.Chore.User);
             return View(model);
-           
             //refer view model User Text and Valus//
-           
         }
         // GET: Chores/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -123,7 +111,6 @@ namespace Mattstone.Controllers
             //return the viewmodel variable with new information 
             return View(viewmodel); ;
         }
-
         // POST: Chores/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -140,9 +127,7 @@ namespace Mattstone.Controllers
             }
             ViewData["DayId"] = new SelectList(_context.Day, "DayId", "DayName", new { id = model.Chore.ChoreId});
             return View(model);
-
         }
-
             // GET: Chores/Delete/5
             public async Task<IActionResult> Delete(int? id)
         {
@@ -150,17 +135,14 @@ namespace Mattstone.Controllers
             {
                 return NotFound();
             }
-
             var chore = await _context.Chore
                 .FirstOrDefaultAsync(m => m.ChoreId == id);
             if (chore == null)
             {
                 return NotFound();
             }
-
             return View(chore);
         }
-
         // POST: Chores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

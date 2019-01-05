@@ -4,52 +4,39 @@
     ViewData["Title"] = "Index";
 }
 <h2>Chores!</h2>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (Model.IsParent == true) { 
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>}
 <table class="table">
     <thead>
         <tr>
-            <dd>
-                Name
-            </dd>
-            <dd>
-                Done
-            </dd>
-            <dd>
-                Day
-            </dd>
-            <dd>
-                Who's Chore?
-            </dd>
-            <th></th>
+            <dt>DETAILS</dt>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Chores)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChoreName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Done)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Day.DayName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.UserHandle)
-            </td>
-       <td>
-         @if (Model.IsParent == true)
-           {
-               
-        <a asp-action="Edit" asp-route-id="@item.ChoreId">Edit</a><span>|</span>
-        <a asp-action="Delete"asp-route-id="@item.ChoreId">Delete</a><span>|</span>
-            }
-        <a asp-action="Details" asp-route-id="@item.ChoreId">Details</a>
-           </td>
-</tr>}
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChoreName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Done)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day.DayName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.UserHandle)
+                </td>
+                <td>
+                    @if (Model.IsParent == true)
+                    {   <a asp-action="Edit" asp-route-id="@item.ChoreId">Edit</a><span>|</span>
+                        <a asp-action="Delete" asp-route-id="@item.ChoreId">Delete</a><span>|</span>
+                        }
+                        <a asp-action="Details" asp-route-id="@item.ChoreId">Details</a>
+                    </td>
+            </tr>}
     </tbody>
 </table>

@@ -10,5 +10,6 @@ namespace Mattstone.Models.ViewModels
     {
         public List<Chore> Chores { get; set; }
         public bool IsParent { get; set; }
+        public int FamilyId { get; set; }
         }
     }

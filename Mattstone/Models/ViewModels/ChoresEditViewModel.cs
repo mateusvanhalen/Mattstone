@@ -12,6 +12,7 @@ namespace Mattstone.Models.ViewModels
         public Chore Chore { get; set; }
         public List<SelectListItem> Day { get; set; }
         public List<SelectListItem> Users { get; set; }
+        public bool IsParent { get; set; }
 
         public ChoresEditViewModel()
         {}

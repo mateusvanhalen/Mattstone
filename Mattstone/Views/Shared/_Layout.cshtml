@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Mattstone Chore Tracker</title>
+    <title>@ViewData["Title"] - Mattstone: Chore Tracker</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -21,7 +21,7 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-btn">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -30,15 +30,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Return Home</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Home</a>
             </div>
-            if (user == null)
+            @*if (user == null)*@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Days" asp-action="Index">View By Day</a></li>
-                    <li><a asp-area="" asp-controller="Chores" asp-action="Index">My Chores</a></li>
-                    <li><a asp-area="" asp-controller="Families" asp-action="Index">Family Profile (Parent Only)</a></li>
-                </ul>
+                    <li><a asp-area="" asp-controller="Chores" asp-action="Index">Family Chores</a></li>
+                    <td>
+                        <li><a asp-area="" asp-controller="Families" asp-action="Index">Family Profile</a></li>
+                    </ul>
                 <partial name="_LoginPartial" />
             </div>
         </div>
@@ -49,6 +50,8 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
+        </br>
+        </br>
         <footer>
             <p>&copy; 2019 - Mattstone</p>
         </footer>
