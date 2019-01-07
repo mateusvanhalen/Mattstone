@@ -46,7 +46,8 @@ namespace Mattstone.Controllers
             ChoreIndexViewModel viewmodel = new ChoreIndexViewModel()
             {
                 Chores = choreList,
-                IsParent = user.IsParent
+                IsParent = user.IsParent,
+               
             };
             return View(viewmodel);
             //viewmodel.ChoreList = Chore
@@ -94,6 +95,7 @@ namespace Mattstone.Controllers
         // GET: Chores/Edit/5
         public async Task<IActionResult> Edit(int? id)
         { 
+            var user = await GetCurrentUserAsync();
             //setting condition if there is no ID or no ID match to databse, return Not found from the null response
             if (id == null)
             {
@@ -113,6 +115,13 @@ namespace Mattstone.Controllers
             //using the viewmodel variable's property chore(as an object), define it as chore. This will let us use the information from the created chore to display 
             viewmodel.Chore = chore
                 ;
+            viewmodel.FamilyId = user.FamilyId;
+            var family = await _context.Family
+                .Include(u => u.Users)
+                
+                .SingleOrDefaultAsync(fam => fam.FamilyId == viewmodel.FamilyId);
+            viewmodel.Family = family;
+          
             //return the viewmodel variable with new information 
             return View(viewmodel); ;
         }
