@@ -3,15 +3,16 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h2>Chores!</h2>
-@if (Model.IsParent == true) { 
-    <p>
+<h2>Chore Time!</h2>
+@if (Model.IsParent == true)
+{
+        <div class="modal-header">
         <a asp-action="Create">Create New</a>
-    </p>}
+        </div>
+    }
 <table class="table">
     <thead>
         <tr>
-            <dt>DETAILS</dt>
         </tr>
     </thead>
     <tbody>
@@ -31,12 +32,13 @@
                     @Html.DisplayFor(modelItem => item.User.UserHandle)
                 </td>
                 <td>
+                        <a asp-action="Edit" asp-route-id="@item.ChoreId">Edit</a><span>|</span>
                     @if (Model.IsParent == true)
-                    {   <a asp-action="Edit" asp-route-id="@item.ChoreId">Edit</a><span>|</span>
+                    {
                         <a asp-action="Delete" asp-route-id="@item.ChoreId">Delete</a><span>|</span>
-                        }
-                        <a asp-action="Details" asp-route-id="@item.ChoreId">Details</a>
-                    </td>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.ChoreId">Details</a>
+                </td>
             </tr>}
     </tbody>
 </table>

@@ -34,8 +34,9 @@ namespace Mattstone.Controllers
             var choreList = _context.Chore
                 .Include(c => c.Day)
                 .Include(u => u.User)
-                // this otion here for showing only user chores
-                //.Where(c => c.UserId == user.Id)
+                 // this otion here for showing only user chores
+                 //.Where(c => c.UserId == user.Id)
+                .Where(c => c.User.FamilyId == user.FamilyId)
                 .ToList();
             if (choreList == null)
             {
@@ -98,16 +99,19 @@ namespace Mattstone.Controllers
                 return NotFound();
             }
             //the response from the async (await) for the context(what is grabbing properties) for chore ad finidng the id that is binded
-            var chore = await _context.Chore.FindAsync(id);
+            var chore = await _context.Chore
+                .FindAsync(id);
             // if the property of chore returns null throw a NotFound message 
             if (chore == null)
             {
                 return NotFound();
             }
             // using the viewmodel variable from ChoresEditViewModel, create a new instance from the context method
-            ChoresEditViewModel viewmodel = new ChoresEditViewModel(_context);
+            ChoresEditViewModel viewmodel = new ChoresEditViewModel(_context)
+                ;
             //using the viewmodel variable's property chore(as an object), define it as chore. This will let us use the information from the created chore to display 
-            viewmodel.Chore = chore;
+            viewmodel.Chore = chore
+                ;
             //return the viewmodel variable with new information 
             return View(viewmodel); ;
         }

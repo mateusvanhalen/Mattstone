@@ -9,15 +9,13 @@ body {
     background-color: #0267b1;
     font: body
 }
+
 .jumbotron {
     background-color: tan;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-align:center;
     width: 40em;
     align-items:center;
-}
-.jumbotrontxt {
-    
 }
 
 /* Wrapping element */

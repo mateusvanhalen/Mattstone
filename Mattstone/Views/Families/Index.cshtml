@@ -8,12 +8,6 @@
 
 <p>
     </p>
-
-<p>
-    <a asp-action="Index">Your Family List</a>
-</p>
-
-
 <table class="table">
     <thead>
         <tr>
@@ -24,7 +18,8 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.FamilyName)
