@@ -9,15 +9,16 @@ using Mattstone.Data;
 using Mattstone.Models;
 using Mattstone.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Mattstone.Controllers
 {
+    [Authorize]
     public class ChoresController : Controller
     {
         private readonly ApplicationDbContext _context;
         //Id Framework
         private readonly UserManager<ApplicationUser> _userManager;
-
         public ChoresController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;

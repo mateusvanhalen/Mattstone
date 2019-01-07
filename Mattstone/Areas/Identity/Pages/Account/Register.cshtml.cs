@@ -61,7 +61,8 @@ namespace Mattstone.Areas.Identity.Pages.Account
             [Display(Name = "Family Id # - Do not continue if you do not have one")]
             public int FamilyId { get; set; }
 
-            [Display(Name = "User Handle optional")]
+            [Required]
+            [Display(Name = "User Handle")]
             public string UserHandle { get; set; }
 
             [Display(Name = "Are you Mom or Dad?")]

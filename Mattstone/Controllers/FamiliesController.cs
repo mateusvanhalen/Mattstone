@@ -8,21 +8,33 @@ using Microsoft.EntityFrameworkCore;
 using Mattstone.Data;
 using Mattstone.Models;
 using Mattstone.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Mattstone.Controllers
 {
+    [Authorize]
     public class FamiliesController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public FamiliesController(ApplicationDbContext context)
+        //Id Framework like Chores
+        private readonly UserManager<ApplicationUser> _userManager;
+        public FamiliesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Families
         public async Task<IActionResult> Index()
         {
+            var user = await GetCurrentUserAsync();
+
+            var familyList = _context.Family
+                .Include(u => u.Users)
+                .Where(u => u.FamilyId == user.FamilyId)
+                .ToList();
             return View(await _context.Family.ToListAsync());
         }
 
@@ -37,6 +49,7 @@ namespace Mattstone.Controllers
             // get single family with list of users
             var family = await _context.Family
                 .Include(u => u.Users)
+                
               .FirstOrDefaultAsync(m => m.FamilyId == id);
 
             if (family == null)

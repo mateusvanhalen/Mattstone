@@ -53,10 +53,12 @@
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="checkbox">
-                <label class="col-lg-12"></label>
+                <label class="checkbox-inline"></label> 
                 <label asp-for="Input.IsParent"></label>
-                <input asp-for="Input.IsParent" class="checkbox" />
-                <span asp-validation-for="Input.IsParent" class="checkbox"></span>
+                <span>
+                <input asp-for="Input.IsParent"/>
+                <span asp-validation-for="Input.IsParent"></span>
+                </span>
             </div>
 
 

@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Mattstone.Data;
 using Mattstone.Models;
 using Mattstone.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Mattstone.Controllers
 {
+    [Authorize]
     public class DaysController : Controller
     {
         private readonly ApplicationDbContext _context;
