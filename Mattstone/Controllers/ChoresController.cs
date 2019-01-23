@@ -118,7 +118,6 @@ namespace Mattstone.Controllers
             viewmodel.FamilyId = user.FamilyId;
             var family = await _context.Family
                 .Include(u => u.Users)
-                
                 .SingleOrDefaultAsync(fam => fam.FamilyId == viewmodel.FamilyId);
             viewmodel.Family = family;
           

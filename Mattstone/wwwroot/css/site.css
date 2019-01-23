@@ -26,9 +26,9 @@ body {
 }
 
 .jumbotron {
-    width: 30em;
     align-items: center;
 }
+
 .jtrontxt {
     font-family: 'Amatic SC', cursive;
     text-align: center;
@@ -40,7 +40,6 @@ body {
     font-size: 34px;
     font-weight: 200;
 }
-    
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
