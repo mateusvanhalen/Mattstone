@@ -111,6 +111,10 @@ namespace Mattstone.Controllers
             }
             // using the viewmodel variable from ChoresEditViewModel, create a new instance from the context method
             ChoresEditViewModel viewmodel = new ChoresEditViewModel(_context)
+            {
+                //This addidtion lets us use theIsParent on Edit View
+                IsParent = user.IsParent,
+            }
                 ;
             //using the viewmodel variable's property chore(as an object), define it as chore. This will let us use the information from the created chore to display 
             viewmodel.Chore = chore

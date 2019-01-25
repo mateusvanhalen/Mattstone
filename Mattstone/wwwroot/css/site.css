@@ -27,6 +27,7 @@ body {
 
 .jumbotron {
     align-items: center;
+    padding: inherit;
 }
 
 .jtrontxt {
