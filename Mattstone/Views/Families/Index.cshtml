@@ -5,11 +5,9 @@
 }
 
 <h2>Index</h2>
-
     <div class="modal-header">
         <a asp-action="Create">Create New</a>
     </div>
-
 <p>
 </p>
 <table class="table">
@@ -29,8 +27,8 @@
                     @Html.DisplayFor(modelItem => item.FamilyName)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.FamilyId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.FamilyId">Details</a> |
+                    @*<a asp-action="Edit" asp-route-id="@item.FamilyId">Edit</a> |*@
+                    <a asp-action="Details" asp-route-id="@item.FamilyId">Details</a> 
                     @*<a asp-action="Delete" asp-route-id="@item.FamilyId">Delete</a>*@
                 </td>
             </tr>
