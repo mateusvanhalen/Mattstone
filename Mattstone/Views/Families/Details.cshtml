@@ -11,32 +11,35 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Family.FamilyName)
+            Family Name:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Family.FamilyName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Family.FamilyId)
+            Family Id:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Family.FamilyId)
         </dd>
         <dt>
-            Family Members
+            Members:
         </dt>
         @*For Loop to get User Handle for display*@
         @foreach (var item in Model.Users)
         {
             <div class="dl-horizontal">
                 <dd>
-                    @item.UserHandle
-            </dd>
+                   @item.FamilyRole:  @item.UserHandle,  @item.UserName
+                </dd>
             </div>
         }
     </dl>
 </div>
 <div>
-    @*<a asp-action="Edit" asp-route-id="@Model.Family.FamilyId">Edit Family Name</a> |*@
-    <a asp-action="Index">Back to List</a>
-</div>
+    @if (Model.IsParent == true)
+    {
+        @*<a asp-action="Edit" asp-route-id="@Model.Family.FamilyId">Edit Family Name</a> |*@
+    }
+        <a asp-action="Index">Back to List</a>
+    </div>
