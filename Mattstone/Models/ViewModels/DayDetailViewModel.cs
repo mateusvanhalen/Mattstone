@@ -10,5 +10,7 @@ namespace Mattstone.Models.ViewModels
         public Day Day { get; set; }
         public ApplicationUser Users { get; set; }
         public List<Chore> Chores { get; set; }
+        public List<ApplicationUser> User { get; set; }
+        public ApplicationUser UserHandle { get; set; }
     }
 }

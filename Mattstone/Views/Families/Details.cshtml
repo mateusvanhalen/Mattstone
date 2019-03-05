@@ -11,29 +11,33 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            Family Name:
+            Family Last Name:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Family.FamilyName)
         </dd>
+        <br/>
         <dt>
-            Family Id:
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Family.FamilyId)
-        </dd>
-        <dt>
-            Members:
+            Family Members:
         </dt>
         @*For Loop to get User Handle for display*@
         @foreach (var item in Model.Users)
         {
             <div class="dl-horizontal">
                 <dd>
-                   @item.FamilyRole:  @item.UserHandle,  @item.UserName
+                    @item.FamilyRole:  @item.UserHandle, @item.UserName
+                </dd>
+                <br />
+                <dd>
                 </dd>
             </div>
         }
+        <dt>
+            Family Id #:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Family.FamilyId)
+        </dd>
     </dl>
 </div>
 <div>
